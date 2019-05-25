@@ -14,29 +14,29 @@
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/', 'InicioController@index');
+	Route::get('/', 'InicioController@index'); //Login, registro..
 
     Route::group(['prefix' => 'inicio'], function(){
 
-        Route::get('/', 'TodoController@getIndex');
+        Route::get('/', 'TodoController@getIndex'); // inicio/principal se verán los atuendos de la gente.
 
-        Route::get('show/{id}', 'TodoController@getShow');
+        Route::get('perfil/{id}', 'TodoController@getPerfilUsuario'); // inicio/perfilUsuario otro usuario.
 
-        Route::get('crearConjunto', 'TodoController@getCreate');
+        Route::get('crearConjunto', 'TodoController@getCreate'); // inicio/crear atuendo
 
-        Route::get('editarConjunto/{id}', 'TodoController@getEdit');
+        Route::get('editarConjunto/{id}', 'TodoController@getEdit'); // /inicio/editar atuendo
 
-        Route::post('create', 'TodoController@postCreate');
+        Route::post('create', 'TodoController@postCreate'); // /inicio/crearUsuario
 
-        Route::put('edit/{id}', 'TodoController@putEdit');
+        Route::put('edit/{id}', 'TodoController@putEdit'); // /inicio/editarUsuario
 
-        Route::put('changeRented/{id}', 'InicioController@changeRented');
+        //Route::put('changeRented/{id}', 'InicioController@changeRented');
     });
 });
 
 Auth::routes();
 
-Route::get('/home', 'InicioController@index')->name('home');
+Route::get('/inicio', 'InicioController@index')->name('inicio');
 
 
 /* Route::group(['middleware' => 'auth'], function() {
