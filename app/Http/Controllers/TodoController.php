@@ -29,14 +29,20 @@ class TodoController extends Controller
     }
 
     public function postCreate(Request $request) {
-        Movie::create([
-            'title' => $request->title,
-            'year' => $request->year,
-            'director' => $request->director,
-            'poster' => $request->poster,
-            'synopsis' => $request->synopsis
-        ]);
-        return redirect('/catalog');
+      //https://www.jose-aguilar.com/blog/como-subir-una-imagen-con-jquery-ajax-php/
+        if (($_FILES["file"]["type"] == "image/pjpeg")
+        || ($_FILES["file"]["type"] == "image/jpeg")
+        || ($_FILES["file"]["type"] == "image/png")
+        || ($_FILES["file"]["type"] == "image/gif")) {
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], "images/".$_FILES['file']['name'])) {
+            //more code here...
+            echo "images/".$_FILES['file']['name'];
+        } else {
+            echo 0;
+        }
+      } else {
+        echo 0;
+      }
     }
 
     public function getEdit($id)

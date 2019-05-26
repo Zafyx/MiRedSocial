@@ -6,39 +6,39 @@
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    Añadir película
+                    Añadir Atuendos
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ url('/catalog/create/') }}" method="POST">
+                    <form action="{{ url('/inicio/create/') }}" method="POST">
 
                         @csrf
 
-                        <div class="form-group">
-                            <label for="title">Título</label>
-                            <input type="text" name="title" id="title" class="form-control">
+                        <h2> ¿Cuántos atuendos vas a subir?</h2>
+                        <div class="">
+                          <span id="boton1"> <button type="button" name="button"> 1 </button> </span>
+                          <span id="boton2"> <button type="button" name="button"> 2 </button> </span>
+                          <span id="boton3"> <button type="button" name="button"> 3 </button> </span>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o">
+                            <label for="title"> Evento: </label>
+                            <input type="text" name="tituloevento" id="tituloevento" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="director" placeholder="Director">
+                            <label for="title"> Describe tu evento: </label>
+                            <input type="text" name="descripcionevento" id="descripcionevento" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="synopsis">Resumen</label>
-                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3"></textarea>
+                            <label for="image">Nueva imagen</label>
+                            <input type="file" class="form-control-file" name="image" id="image">
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-                                Añadir película
+                            <button type="submit" class="btn btn-primary upload" style="padding:8px 100px;margin-top:25px;">
+                                Añadir Atuendos
                             </button>
                         </div>
 
