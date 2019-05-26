@@ -25,7 +25,7 @@ class TodoController extends Controller
 
     public function getCreate()
     {
-        return 'Aquí aparecerá el formulario para crear un conjunto :)';
+        return view('todo.create');
     }
 
     public function postCreate(Request $request) {

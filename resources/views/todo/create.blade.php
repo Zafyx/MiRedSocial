@@ -31,8 +31,20 @@
                             <input type="text" name="descripcionevento" id="descripcionevento" class="form-control">
                         </div>
 
-                        <div class="form-group">
-                            <label for="image">Nueva imagen</label>
+                        <div class="form-group" id="imagen1">
+                            <label for="image">Atuendo</label>
+                            <input type="file" class="form-control-file" name="image" id="image">
+                        </div>
+                        <div class="form-group" id="imagen2">
+                            <label for="image">Atuendo</label>
+                            <input type="file" class="form-control-file" name="image" id="image">
+                        </div>
+                        <div class="form-group" id="imagen3">
+                            <label for="image">Atuendo</label>
+                            <input type="file" class="form-control-file" name="image" id="image">
+                        </div>
+                        <div class="form-group" id="imagen4">
+                            <label for="image">Atuendo</label>
                             <input type="file" class="form-control-file" name="image" id="image">
                         </div>
 

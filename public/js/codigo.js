@@ -1,8 +1,17 @@
 
 
 $(document).ready(function() {
-    $( "#target" ).click(function() {
-      alert( "Handler for .click() called." );
+    $( "#button2" ).click(function() {
+      $("#imagen3").css('visibility', 'hidden');
+      $("#imagen4").css('visibility', 'hidden');
+    });
+    $( "#button3" ).click(function() {
+      $("#imagen3").css('visibility', 'visible');
+      $("#imagen4").css('visibility', 'hidden');
+    });
+    $( "#button4" ).click(function() {
+      $("#imagen3").css('visibility', 'visible');
+      $("#imagen4").css('visibility', 'visible');
     });
 
     /*
