@@ -4,18 +4,18 @@
 
     <div class="row">
 
-        @foreach( $arrayPeliculas as $pelicula )
+        <!-- @foreach( $arrayPeliculas as $pelicula ) -->
             <div class="col-xs-6 col-sm-4 col-md-3 text-center">
 
-                <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
+                <!-- <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
                     <img src="{{$pelicula->poster}}" style="height:200px"/>
                     <h4 style="min-height:45px;margin:5px 0 10px 0">
                         {{$pelicula->title}}
                     </h4>
-                </a>
-
+                </a> -->
+                <h1>Esto es el index!</h1>
             </div>
-        @endforeach
+        <!-- @endforeach -->
 
     </div>
 

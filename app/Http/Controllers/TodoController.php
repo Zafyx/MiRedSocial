@@ -3,24 +3,18 @@
 namespace WhatToWear\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Movie;
 
 class TodoController extends Controller
 {
 
     public function getIndex()
     {
-        // $arrayPeliculas = Movie::all();
-        // return view('catalog.index', array('arrayPeliculas'=> $arrayPeliculas));
         return view('todo.index');
     }
 
     public function getPerfilUsuario($id) //getShow
     {
-        $pelicula = Movie::findOrFail($id);
-        return view('catalog.show', array(
-            'pelicula' => $pelicula
-        ));
+        return view('todo.perfil');
     }
 
     public function getCreate()
@@ -47,30 +41,30 @@ class TodoController extends Controller
 
     public function getEdit($id)
     {
-        $pelicula = Movie::findOrFail($id);
-        return view('catalog.edit', array('pelicula'=>$pelicula));
+
+        return view('todo.edit');
     }
 
     public function putEdit($id)
     {
-        $pelicula = Movie::findOrFail($id);
-        $pelicula->title = $request->title;
-        $pelicula->year = $request->year;
-        $pelicula->director = $request->director;
-        $pelicula->poster = $request->poster;
-        $pelicula->synopsis = $request->synopsis;
-
-        $pelicula->save();
-        return redirect('/catalog/show/' . $pelicula->id);
+        // $pelicula = Movie::findOrFail($id);
+        // $pelicula->title = $request->title;
+        // $pelicula->year = $request->year;
+        // $pelicula->director = $request->director;
+        // $pelicula->poster = $request->poster;
+        // $pelicula->synopsis = $request->synopsis;
+        //
+        // $pelicula->save();
+        return 'el put aún no va jaja';
     }
 
 
-    public function changeRented($id)
-    {
-        $pelicula = Movie::findOrFail($id);
-        $pelicula->rented = !$pelicula->rented;
-        $pelicula->save();
-        return back();
-    }
+    // public function changeRented($id)
+    // {
+    //     $pelicula = Movie::findOrFail($id);
+    //     $pelicula->rented = !$pelicula->rented;
+    //     $pelicula->save();
+    //     return back();
+    // }
 
 }

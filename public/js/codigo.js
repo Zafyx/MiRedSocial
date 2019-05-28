@@ -1,6 +1,9 @@
 
 
 $(document).ready(function() {
+  /*
+   * Enseñamos únicamente el número de imágenes que se va a subir.
+   */
     $( "#button2" ).click(function() {
       $("#imagen3").css('visibility', 'hidden');
       $("#imagen4").css('visibility', 'hidden');
@@ -15,7 +18,7 @@ $(document).ready(function() {
     });
 
     /*
-     * Función jquery que coge la imagen
+     * Función jquery que coge la imagen.
      */
     $(".upload").on('click', function() {
         var formData = new FormData();
