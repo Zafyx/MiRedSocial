@@ -25,4 +25,14 @@ class InicioController extends BaseController
   {
       return view('todo.index');
   }
+
+  /**
+   * Muestra el perfil.
+   *
+   * @return \Illuminate\Contracts\Support\Renderable
+   */
+  public function perfil()
+  {
+      return view('todo.perfil');
+  }
 }

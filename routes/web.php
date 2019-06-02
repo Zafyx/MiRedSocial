@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function() {
 
         //Route::put('changeRented/{id}', 'InicioController@changeRented');
     });
+
+		Route::get('/perfil', 'InicioController@perfil');
 });
 
 Auth::routes();
