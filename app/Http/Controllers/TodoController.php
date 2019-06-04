@@ -16,7 +16,9 @@ class TodoController extends Controller
 
     public function getPerfilUsuario($id) //getShow
     {
-        return view('todo.perfil');
+      $sentencia = DB::select('SELECT image1 FROM conjuntos WHERE title = ?', ['Desarrollador back-end']);
+
+      return view('todo.perfil', compact('conjunto'));
     }
 
     public function getCreate()

@@ -17,6 +17,17 @@
       @endforeach
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
     <?php
     // Include the database configuration file
     include_once 'dbConfig.php';

@@ -15,8 +15,9 @@ class CreateConjuntosTable extends Migration
     {
         Schema::create('conjuntos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_name');
             $table->string('event');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image1');
             $table->string('image2');
             $table->string('image3')->nullable();
