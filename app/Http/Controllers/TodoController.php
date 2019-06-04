@@ -16,9 +16,11 @@ class TodoController extends Controller
 
     public function getPerfilUsuario($id) //getShow
     {
-      $sentencia = DB::select('SELECT image1 FROM conjuntos WHERE title = ?', ['Desarrollador back-end']);
+      $usuario = auth()->user()->user_name;
 
-      return view('todo.perfil', compact('conjunto'));
+      $sentencia = DB::select('SELECT image1 FROM conjuntos WHERE user_name = ?', [$usuario]);
+
+      return view('todo.perfil', compact('sentencia'));
     }
 
     public function getCreate()
@@ -50,8 +52,9 @@ class TodoController extends Controller
           $name_image4 = time().$file4->getClientOriginalName();
           $file4->move(public_path().'/images/',$name_image4);
         }
-
+        $usuario = auth()->user()->user_name;
         $conjunto = new Conjunto();
+        $conjunto->user_name = $usuario;
         $conjunto->event = $request->input('tituloevento');
         $conjunto->description = $request->input('descripcionevento');
         $conjunto->image1 = $name_image1;

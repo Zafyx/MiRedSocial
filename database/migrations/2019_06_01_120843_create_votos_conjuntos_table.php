@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLikesConjuntosTable extends Migration
+class CreateVotosConjuntosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateLikesConjuntosTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('votos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreign('imagen_id')->references('id')->on('imagenes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateLikesConjuntosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('votos');
     }
 }
