@@ -3,21 +3,20 @@
 @section('content')
 
     <div class="row">
-
+      @foreach($conjuntos as $conjunto)
+      <div>
         <div class="col-sm-4">
-
-            <a href="{{ $conjunto->id }}">
-                <img src="{{$conjunto->image1}}" style="height:200px"/>
-            </a>
-
+                <img src="images/{{$conjunto->image1}}" style="height:200px"/>
+                <img src="images/{{$conjunto->image2}}" style="height:200px"/>
         </div>
         <div class="col-sm-8">
-
             <h4>{{$conjunto->event}}</h4>
             <h6>A&ntilde;o: {{$conjunto->description}}</h6>
-
         </div>
-    </div>
+      </div>
+      @endforeach
+
+  </div>
     <?php
     // Include the database configuration file
     include_once 'dbConfig.php';

@@ -13,8 +13,8 @@ class AddPhotoToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('conjuntos', function (Blueprint $table) {
-            $table->string('profile_photo');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('profile_photo')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddPhotoToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('conjuntos', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

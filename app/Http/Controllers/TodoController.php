@@ -26,6 +26,8 @@ class TodoController extends Controller
 
     public function postCreate(Request $request) {
 
+      $existe3 = $existe4 = false;
+
       if($request->hasFile('file1') && $request->hasFile('file2')) {
 
         $file1 = $request->file('file1');
@@ -33,21 +35,38 @@ class TodoController extends Controller
         $file2 = $request->file('file2');
         $name_image2 = time().$file2->getClientOriginalName();
 
-        $file1->move(public_path().'images',$name_image1);
-        $file2->move(public_path().'images',$name_image2);
+        $file1->move(public_path().'/images/',$name_image1);
+        $file2->move(public_path().'/images/',$name_image2);
 
         if($request->hasFile('file3') != null) {
           $file3 = $request->file('file3');
           $name_image3 = time().$file3->getClientOriginalName();
-          $file3->move(public_path().'images',$name_image3);
+          $file3->move(public_path().'/images/',$name_image3);
         }
         if($request->hasFile('file4') != null) {
           $file4 = $request->file('file4');
           $name_image4 = time().$file4->getClientOriginalName();
-          $file4->move(public_path().'images',$name_image4);
+          $file4->move(public_path().'/images/',$name_image4);
         }
 
-
+        $conjunto = new Conjunto();
+        $conjunto->event = $request->input('tituloevento');
+        $conjunto->description = $request->input('descripcionevento');
+        $conjunto->image1 = $name_image1;
+        $conjunto->image2 = $name_image2;
+        if ($existe3) {
+          $conjunto->image3 = $name_image3;
+        } else {
+          $conjunto->image3 = null;
+        }
+        if ($existe4) {
+          $conjunto->image4 = $name_image4;
+        } else {
+          $conjunto->image4 = null;
+        }
+        $conjunto->save();
+        return view('todo.perfil');
+        //$db->query("INSERT INTO imagenes (user_name, image1, image2, image3, image4) VALUES ('".auth()->user()->user_name."','".$file1."','".$file2."','".$file3."','".$file4."')");
       }
     //   session_start();
     //
@@ -114,8 +133,7 @@ class TodoController extends Controller
     // echo $statusMsg;
     // session_close();
 }
-        return view('todo.perfil');
-    }
+
 
     public function getEdit($id)
     {
