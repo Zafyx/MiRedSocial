@@ -10,10 +10,14 @@ class Imagen extends Model
 
     public function conjunto()
     {
-      return $this->belongsTo(Conjunto::class);
+      return $this->belongsTo('App\Conjunto');
     }
     public function votos() //imagen_id
     {
-      return $this->hasMany(Voto::class);
+      return $this->hasMany('App\Voto');
+    }
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 }

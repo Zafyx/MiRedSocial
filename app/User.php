@@ -39,6 +39,10 @@ class User extends Authenticatable
 
     public function conjuntos() //conjunto_id
     {
-      return $this->hasMany(Conjunto::class);
+      return $this->hasMany('App\Conjunto');
+    }
+    public function imagenes()
+    {
+        return $this->belongsToMany('App\Imagen');
     }
 }

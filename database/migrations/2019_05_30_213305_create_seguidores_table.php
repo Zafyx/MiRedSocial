@@ -15,8 +15,8 @@ class CreateSeguidoresTable extends Migration
     {
         Schema::create('seguidores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_following');
-            $table->string('user_followed');
+            $table->foreign('user_id_seguidor')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id_seguido')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

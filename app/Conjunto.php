@@ -8,10 +8,10 @@ class Conjunto extends Model
 {
     public function user()
     {
-      return $this->belongsTo(User::class);
+      return $this->belongsTo('App\User');
     }
     public function imagenes() //imagen_id
     {
-      return $this->hasMany(Imagen::class);
+      return $this->hasMany('App\Imagen');
     }
 }

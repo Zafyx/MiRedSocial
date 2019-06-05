@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voto extends Model
 {
-    protected $table = 'likes';
+    protected $table = 'votos';
 
     public function imagen()
     {
-      return $this->belongsTo(Imagen::class);
+      return $this->belongsTo('App\Imagen');
     }
 }
