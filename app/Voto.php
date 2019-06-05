@@ -10,6 +10,6 @@ class Voto extends Model
 
     public function imagen()
     {
-      $this->belongsTo(Imagen::class);
+      return $this->belongsTo(Imagen::class);
     }
 }

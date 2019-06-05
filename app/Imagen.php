@@ -10,7 +10,7 @@ class Imagen extends Model
 
     public function conjunto()
     {
-      $this->belongsTo(Conjunto::class);
+      return $this->belongsTo(Conjunto::class);
     }
     public function votos() //imagen_id
     {

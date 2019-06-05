@@ -1,5 +1,5 @@
 <?php
-
+// https://fernando-gaitan.com.ar/laravel-5-parte-4-modelos-y-relaciones/
 namespace WhatToWear;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,7 @@ class Conjunto extends Model
 {
     public function user()
     {
-      $this->belongsTo(User::class);
+      return $this->belongsTo(User::class);
     }
     public function imagenes() //imagen_id
     {
