@@ -15,7 +15,7 @@ class CreateConjuntosTable extends Migration
     {
         Schema::create('conjuntos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('event');
             $table->string('description')->nullable();
             $table->timestamps();

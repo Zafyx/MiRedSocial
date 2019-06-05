@@ -15,7 +15,7 @@ class CreateGuardaImagenesTable extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('conjunto_id')->references('id')->on('conjuntos')->onDelete('cascade');
+            $table->foreign('conjuntos_id')->references('id')->on('conjuntos')->onDelete('cascade');
             $table->string('image');
             $table->timestamps();
         });

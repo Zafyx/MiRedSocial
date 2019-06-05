@@ -15,7 +15,7 @@ class CreateVotosConjuntosTable extends Migration
     {
         Schema::create('votos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('imagen_id')->references('id')->on('imagenes')->onDelete('cascade');
+            $table->foreign('imagenes_id')->references('id')->on('imagenes')->onDelete('cascade');
             $table->timestamps();
         });
     }
