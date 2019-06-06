@@ -45,16 +45,29 @@ class User extends Authenticatable
     {
       return $this->belongsToMany('App\Imagen');
     }
-    public function users() //seguido_id
+    //https://medium.com/innohub/create-user-following-system-with-laravel-5-4-5fc47828fb39
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function seguidores()
     {
-      return $this->belongsToMany('User', 'seguidores', 'users_id_seguidor', 'users_id_seguido');
+        return $this->belongsToMany(User::class, 'seguidores', 'users_id_seguido', 'users_id_seguidor')->withTimestamps();
     }
-    public function addFollower(User $user)
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function siguiendo()
     {
-        $this->seguidores()->attach($user->id);
+        return $this->belongsToMany(User::class, 'seguidores', 'users_id_seguidor', 'users_id_seguido')->withTimestamps();
     }
-    public function removeFollower(User $user)
-    {
-        $this->seguidores()->detach($user->id);
-    }
+
+    // public function addFollower(User $user)
+    // {
+    //     $this->seguidores()->attach($user->id);
+    // }
+    // public function removeFollower(User $user)
+    // {
+    //     $this->seguidores()->detach($user->id);
+    // }
 }

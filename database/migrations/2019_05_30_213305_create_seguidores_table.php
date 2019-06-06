@@ -15,9 +15,9 @@ class CreateSeguidoresTable extends Migration
     {
         Schema::create('seguidores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('users_id_seguidor')->unsigned();
+            $table->bigInteger('users_id_seguidor')->unsigned();
+            $table->bigInteger('users_id_seguido')->unsigned();
             $table->foreign('users_id_seguidor')->references('id')->on('users');
-            $table->integer('users_id_seguido')->unsigned();
             $table->foreign('users_id_seguido')->references('id')->on('users');
             $table->primary(['users_id_seguidor', 'users_id_seguido']);
             $table->timestamps();
@@ -31,6 +31,8 @@ class CreateSeguidoresTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('seguidores');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
