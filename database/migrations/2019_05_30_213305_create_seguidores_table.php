@@ -15,8 +15,11 @@ class CreateSeguidoresTable extends Migration
     {
         Schema::create('seguidores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('users_id_seguidor')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('users_id_seguido')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('users_id_seguidor')->unsigned();
+            $table->foreign('users_id_seguidor')->references('id')->on('users');
+            $table->integer('users_id_seguido')->unsigned();
+            $table->foreign('users_id_seguido')->references('id')->on('users');
+            $table->primary(['users_id_seguidor', 'users_id_seguido']);
             $table->timestamps();
         });
     }

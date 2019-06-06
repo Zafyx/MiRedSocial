@@ -43,6 +43,18 @@ class User extends Authenticatable
     }
     public function imagenes()
     {
-        return $this->belongsToMany('App\Imagen');
+      return $this->belongsToMany('App\Imagen');
+    }
+    public function users() //seguido_id
+    {
+      return $this->belongsToMany('User', 'seguidores', 'users_id_seguidor', 'users_id_seguido');
+    }
+    public function addFollower(User $user)
+    {
+        $this->seguidores()->attach($user->id);
+    }
+    public function removeFollower(User $user)
+    {
+        $this->seguidores()->detach($user->id);
     }
 }
