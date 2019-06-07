@@ -14,7 +14,6 @@ class CreateSeguidoresTable extends Migration
     public function up()
     {
         Schema::create('seguidores', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('users_id_seguidor')->unsigned();
             $table->bigInteger('users_id_seguido')->unsigned();
             $table->foreign('users_id_seguidor')->references('id')->on('users');

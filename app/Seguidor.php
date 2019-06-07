@@ -10,6 +10,6 @@ class Seguidor extends Model
 
     public function users() //seguido_id
     {
-      return $this->belongsToMany('App\User')->withTimestamps();
+      return $this->belongsTo('App\User')->withTimestamps();
     }
 }

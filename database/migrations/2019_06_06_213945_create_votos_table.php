@@ -15,7 +15,7 @@ class CreateVotosTable extends Migration
     {
       Schema::create('votos', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->integer('imagenes_id')->unsigned();
+          $table->bigInteger('imagenes_id')->unsigned();
           $table->foreign('imagenes_id')->references('id')->on('imagenes')->onDelete('cascade');
           $table->timestamps();
       });

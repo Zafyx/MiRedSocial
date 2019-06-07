@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function seguidores()
     {
-        return $this->belongsToMany(User::class, 'seguidores', 'users_id_seguido', 'users_id_seguidor')->withTimestamps();
+        return $this->hasMany(User::class, 'seguidores', 'users_id_seguido', 'users_id_seguidor')->withTimestamps();
     }
 
     /**
@@ -59,7 +59,7 @@ class User extends Authenticatable
      */
     public function siguiendo()
     {
-        return $this->belongsToMany(User::class, 'seguidores', 'users_id_seguidor', 'users_id_seguido')->withTimestamps();
+        return $this->hasMany(User::class, 'seguidores', 'users_id_seguidor', 'users_id_seguido')->withTimestamps();
     }
 
     // public function addFollower(User $user)
