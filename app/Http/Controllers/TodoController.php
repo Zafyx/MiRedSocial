@@ -30,8 +30,13 @@ class TodoController extends Controller
 
     public function postCreate(Request $request) {
 
-      $existe3 = $existe4 = false;
-
+      $userId = auth()->user()->id;
+      $conjunto = new Conjunto();
+      $conjunto->users_id = $userId;
+      $conjunto->event = $request->input('tituloevento');
+      $conjunto->description = $request->input('descripcionevento');
+      $conjunto->save();
+      
       if($request->hasFile('file1') && $request->hasFile('file2')) {
 
         $file1 = $request->file('file1');
@@ -42,37 +47,43 @@ class TodoController extends Controller
         $file1->move(public_path().'/images/',$name_image1);
         $file2->move(public_path().'/images/',$name_image2);
 
+        $imagen1 = new Imagen();
+        $imagen1->conjuntos_id = $conjunto->id;
+        $imagen1->image = $name_image1;
+        $imagen1->save();
+
+        $imagen2 = new Imagen();
+        $imagen2->conjuntos_id = $conjunto->id;
+        $imagen2->image = $name_image2;
+        $imagen2->save();
+
         if($request->hasFile('file3') != null) {
           $file3 = $request->file('file3');
           $name_image3 = time().$file3->getClientOriginalName();
           $file3->move(public_path().'/images/',$name_image3);
+
+          $imagen3 = new Imagen();
+          $imagen3->conjuntos_id = $conjunto->id;
+          $imagen3->image = $name_image3;
+          $imagen3->save();
         }
         if($request->hasFile('file4') != null) {
           $file4 = $request->file('file4');
           $name_image4 = time().$file4->getClientOriginalName();
           $file4->move(public_path().'/images/',$name_image4);
+
+          $imagen4 = new Imagen();
+          $imagen4->conjuntos_id = $conjunto->id;
+          $imagen4->image = $name_image4;
+          $imagen4->save();
         }
-        $usuario = auth()->user()->user_name;
-        $conjunto = new Conjunto();
-        $conjunto->user_name = $usuario;
-        $conjunto->event = $request->input('tituloevento');
-        $conjunto->description = $request->input('descripcionevento');
-        $conjunto->image1 = $name_image1;
-        $conjunto->image2 = $name_image2;
-        if ($existe3) {
-          $conjunto->image3 = $name_image3;
-        } else {
-          $conjunto->image3 = null;
-        }
-        if ($existe4) {
-          $conjunto->image4 = $name_image4;
-        } else {
-          $conjunto->image4 = null;
-        }
-        $conjunto->save();
+        //$usuario = auth()->user()->user_name;
+
         return view('todo.perfil');
         //$db->query("INSERT INTO imagenes (user_name, image1, image2, image3, image4) VALUES ('".auth()->user()->user_name."','".$file1."','".$file2."','".$file3."','".$file4."')");
       }
+// TODO No ha selecionado dos fotos.
+
     //   session_start();
     //
     //   //$user = $_SESSION['name'];
@@ -156,6 +167,21 @@ class TodoController extends Controller
         //
         // $pelicula->save();
         return 'el put aún no va jaja';
+    }
+
+    public function followUser($id){
+        $user = User::find($id);
+        if(!$user){
+            return redirect()->back()->with('error', 'User does not exist.');
+            }
+
+            $follow = new Follower;
+            $follow->follower_id = Auth::user()->id;
+            $follow->leader_id = $user;
+
+            $follow->save();
+            return redirect()->back()->with('success', 'You now follow the user!');
+
     }
 
 
