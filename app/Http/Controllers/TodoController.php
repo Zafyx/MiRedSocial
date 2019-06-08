@@ -18,29 +18,33 @@ class TodoController extends Controller
         return view('todo.index', compact('conjuntos'));
     }
 
-    public function getPerfilUsuario($id) //getShow
+    public function getPerfilUsuario($id)
     {
-      //$usuario = auth()->user()->user_name;
-      $arrayAtuendos = array();
-      $conjuntos = Conjunto::where('users_id', $id);
-      foreach ($conjuntos as $key => $conjunto) {
-        $conjunto_id = $conjunto->id;
-        $event = DB::select('SELECT event FROM conjuntos WHERE conjuntos_id = ?', [$conjunto_id]);
-        $description = DB::select('SELECT description FROM conjuntos WHERE conjuntos_id = ?', [$conjunto_id]);
-        $images = DB::select('SELECT image FROM imagenes WHERE conjuntos_id = ?', [$conjunto_id]);
-        $arrayAtuendos .= array(
-                          'conjuntos_id' => $conjunto_id,
-                          'event' => $event,
-                          'description' => $description,
-                          'images' => $images
-                        );
-              dd($event);
-              dd($description);
-              dd($images);
-      }
+      //$arrayAtuendos[] = array();
+      $conjuntos = Conjunto::all()->where('users_id', $id);
+      $imagenes = Imagen::all()->where('users_id', $id);
+      // foreach ($conjuntos as $key => $conjunto) {
+      //   $conjunto_id = $conjunto->id;
+      //   $event = $conjunto->event;
+      //   $description = $conjunto->description;
+      //   $imagenes = Imagen::all()->where('conjuntos_id', $conjunto_id);
+      //   dd($imagenes);
+      //
+      //   $event = DB::select('SELECT event FROM conjuntos WHERE id = ?', [$conjunto_id]);
+      //   $description = DB::select('SELECT description FROM conjuntos WHERE id = ?', [$conjunto_id]);
+      //   $images = DB::select('SELECT image FROM imagenes WHERE conjuntos_id = ?', [$conjunto_id]);
+      //   $arrayAtuendos[] .= array(
+      //                     'conjuntos_id' => $conjunto_id,
+      //                     'event' => $event,
+      //                     'description' => $description,
+      //                     'images' => $images
+      //                   );
+      //         dd($event);
+      //         dd($description);
+      //         dd($images);
+      // }
 
-
-      return view('todo.perfil')->with('arrayAtuendos', $arrayAtuendos);
+      return view('todo.perfil', compact('conjuntos','imagenes'));
     }
 
     public function getCreate()
@@ -69,11 +73,13 @@ class TodoController extends Controller
 
         $imagen1 = new Imagen();
         $imagen1->conjuntos_id = $conjunto->id;
+        $imagen1->users_id = $userId;
         $imagen1->image = $name_image1;
         $imagen1->save();
 
         $imagen2 = new Imagen();
         $imagen2->conjuntos_id = $conjunto->id;
+        $imagen2->users_id = $userId;
         $imagen2->image = $name_image2;
         $imagen2->save();
 
@@ -84,6 +90,7 @@ class TodoController extends Controller
 
           $imagen3 = new Imagen();
           $imagen3->conjuntos_id = $conjunto->id;
+          $imagen3->users_id = $userId;
           $imagen3->image = $name_image3;
           $imagen3->save();
         }
@@ -94,13 +101,12 @@ class TodoController extends Controller
 
           $imagen4 = new Imagen();
           $imagen4->conjuntos_id = $conjunto->id;
+          $imagen4->users_id = $userId;
           $imagen4->image = $name_image4;
           $imagen4->save();
         }
-        //$usuario = auth()->user()->user_name;
 
-        return view('todo.perfil', $userId);
-        //$db->query("INSERT INTO imagenes (user_name, image1, image2, image3, image4) VALUES ('".auth()->user()->user_name."','".$file1."','".$file2."','".$file3."','".$file4."')");
+        return view('todo.perfil', compact('userId'));
       }
 
       echo 'Se tienen que seleccionar 2 fotos como mínimo.';

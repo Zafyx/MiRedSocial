@@ -12,4 +12,8 @@ class Voto extends Model
     {
       return $this->belongsTo('App\Imagen');
     }
+    public function users()
+    {
+      return $this->belongsToMany('App\User');
+    }
 }

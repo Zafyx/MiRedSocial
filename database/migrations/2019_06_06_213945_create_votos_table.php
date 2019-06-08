@@ -17,6 +17,8 @@ class CreateVotosTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('imagenes_id')->unsigned();
           $table->foreign('imagenes_id')->references('id')->on('imagenes')->onDelete('cascade');
+          $table->bigInteger('users_id')->unsigned();
+          $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
           $table->timestamps();
       });
     }

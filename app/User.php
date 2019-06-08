@@ -45,6 +45,10 @@ class User extends Authenticatable
     {
       return $this->belongsToMany('App\Imagen');
     }
+    public function votos()
+    {
+      return $this->belongsToMany('App\Voto');
+    }
     //https://medium.com/innohub/create-user-following-system-with-laravel-5-4-5fc47828fb39
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
