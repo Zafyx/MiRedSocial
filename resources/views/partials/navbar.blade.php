@@ -64,7 +64,7 @@
         <a class="nav-link" href="/inicio/crearConjunto"> Añadir Conjunto </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/perfil"> Mi Perfil </a>
+        <a class="nav-link" href="/inicio/perfil/{{auth()->user()->id}}"> Mi Perfil </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout"> Cerrar Sesión </a>

@@ -21,14 +21,26 @@ class TodoController extends Controller
     public function getPerfilUsuario($id) //getShow
     {
       //$usuario = auth()->user()->user_name;
-      $conjuntos = Cojunto::where('users_id', $id);
+      $arrayAtuendos = array();
+      $conjuntos = Conjunto::where('users_id', $id);
       foreach ($conjuntos as $key => $conjunto) {
-
+        $conjunto_id = $conjunto->id;
+        $event = DB::select('SELECT event FROM conjuntos WHERE conjuntos_id = ?', [$conjunto_id]);
+        $description = DB::select('SELECT description FROM conjuntos WHERE conjuntos_id = ?', [$conjunto_id]);
+        $images = DB::select('SELECT image FROM imagenes WHERE conjuntos_id = ?', [$conjunto_id]);
+        $arrayAtuendos .= array(
+                          'conjuntos_id' => $conjunto_id,
+                          'event' => $event,
+                          'description' => $description,
+                          'images' => $images
+                        );
+              dd($event);
+              dd($description);
+              dd($images);
       }
-      $conjuntoss = DB::select('SELECT id FROM conjuntos WHERE users_id = ?', [$id]);
-      $imagenes = DB::select('SELECT * FROM imagenes WHERE conjuntos_id = ?', [$conjuntos]);
 
-      return view('todo.perfil', compact('sentencia'));
+
+      return view('todo.perfil')->with('arrayAtuendos', $arrayAtuendos);
     }
 
     public function getCreate()
