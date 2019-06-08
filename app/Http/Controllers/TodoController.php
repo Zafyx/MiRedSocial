@@ -3,6 +3,10 @@
 namespace WhatToWear\Http\Controllers;
 
 use WhatToWear\Conjunto;
+use WhatToWear\Imagen;
+use WhatToWear\Seguidor;
+use WhatToWear\User;
+use WhatToWear\Voto;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -16,9 +20,13 @@ class TodoController extends Controller
 
     public function getPerfilUsuario($id) //getShow
     {
-      $usuario = auth()->user()->user_name;
+      //$usuario = auth()->user()->user_name;
+      $conjuntos = Cojunto::where('users_id', $id);
+      foreach ($conjuntos as $key => $conjunto) {
 
-      $sentencia = DB::select('SELECT image1 FROM conjuntos WHERE user_name = ?', [$usuario]);
+      }
+      $conjuntoss = DB::select('SELECT id FROM conjuntos WHERE users_id = ?', [$id]);
+      $imagenes = DB::select('SELECT * FROM imagenes WHERE conjuntos_id = ?', [$conjuntos]);
 
       return view('todo.perfil', compact('sentencia'));
     }
@@ -36,7 +44,7 @@ class TodoController extends Controller
       $conjunto->event = $request->input('tituloevento');
       $conjunto->description = $request->input('descripcionevento');
       $conjunto->save();
-      
+
       if($request->hasFile('file1') && $request->hasFile('file2')) {
 
         $file1 = $request->file('file1');
@@ -79,10 +87,11 @@ class TodoController extends Controller
         }
         //$usuario = auth()->user()->user_name;
 
-        return view('todo.perfil');
+        return view('todo.perfil', $userId);
         //$db->query("INSERT INTO imagenes (user_name, image1, image2, image3, image4) VALUES ('".auth()->user()->user_name."','".$file1."','".$file2."','".$file3."','".$file4."')");
       }
-// TODO No ha selecionado dos fotos.
+
+      echo 'Se tienen que seleccionar 2 fotos como mínimo.';
 
     //   session_start();
     //
