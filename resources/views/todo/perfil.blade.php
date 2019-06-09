@@ -14,7 +14,12 @@
        @foreach( $imagenes as $imagen )
        <?php if($conjunto->id == $imagen->conjuntos_id){ ?>
          <div class="col-sm-4 mx-4">
-             <img onclick="{{route('votar', ['conjuntos_id' => $conjunto->id, 'imagenes_id' => $imagen->id])}}" src="/images/{{$imagen->image}}" alt="foto" style="height: 200px; width: 200px;">
+             <img src="/images/{{$imagen->image}}" alt="foto" style="height: 200px; width: 200px;">
+             <form action="{{ url('votar/' . $imagen->id) }}" method="POST">
+               {{ method_field('PUT') }}
+               @csrf
+               <input type="submit" value="Votar" />
+             </form>
          </div>
       <?php } ?>
       @endforeach

@@ -187,17 +187,29 @@ class TodoController extends Controller
     {
         return view('todo.edit');
     }
+    public function postVotar($imagenes_id)
+    {
+        //Antes de dar el voto compruebo que no haya sido votada alguna
+        //de las otras fotos del mismo conjunto.
+        $id_conjunto_imagen = DB::table('imagenes')->select('conjuntos_id')->get();
+        $imagenes_del_conjunto = Imagen::all()->where('conjuntos_id', $id_conjunto_imagen);
+        foreach ($imagenes_del_conjunto as $imagen) {
+          $existe = DB::table('votos')->select('id')->where('imagenes_id', '=', $imagen->id)->get();
+          //Si existe una imagen de ese conjunto votada, borro el voto.
+          if ($existe > 0) {
+            DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
+          }
+        }
+        //Ahora asigno el voto a la imagen en la que se ha clickado.
+        $voto = new Voto();
+        $voto->imagenes_id = $imagenes_id;
+        $voto->users_id = auth()->user()->id;
+        $voto->save();
+    }
 
     public function putEdit($id)
     {
-        // $pelicula = Movie::findOrFail($id);
-        // $pelicula->title = $request->title;
-        // $pelicula->year = $request->year;
-        // $pelicula->director = $request->director;
-        // $pelicula->poster = $request->poster;
-        // $pelicula->synopsis = $request->synopsis;
-        //
-        // $pelicula->save();
+
         return 'el put aún no va jaja';
     }
 
