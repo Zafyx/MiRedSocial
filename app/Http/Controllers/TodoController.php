@@ -105,8 +105,10 @@ class TodoController extends Controller
           $imagen4->image = $name_image4;
           $imagen4->save();
         }
-
-        return view('todo.perfil', compact('userId'));
+        return redirect()->action('TodoController@getPerfilUsuario', [$userId]);
+        //return view('todo.perfil', compact('userId'));
+        //return redirect('inicio/perfil/{id}')->with(compact('userId'));
+        //return redirect()->route('inicio.perfil.{id}')->with('id', $userdId);
       }
 
       echo 'Se tienen que seleccionar 2 fotos como mínimo.';
