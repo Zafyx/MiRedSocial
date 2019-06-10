@@ -40,6 +40,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
+Route::get('/inicio/logout', function() {
+			return redirect('login')->with(Auth::logout());
+});
+
 Route::get('/inicio', 'InicioController@index')->name('inicio');
 
 
