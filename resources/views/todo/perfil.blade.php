@@ -15,8 +15,8 @@
        <?php if($conjunto->id == $imagen->conjuntos_id){ ?>
          <div class="col-sm-4 mx-4">
              <img src="/images/{{$imagen->image}}" alt="foto" style="height: 200px; width: 200px;">
-             <form action="{{ url('votar/' . $imagen->id) }}" method="POST">
-               {{ method_field('PUT') }}
+             <form action="{{ url('votar/' . $imagen->id .'/' . $imagen->conjuntos_id) }}" method="POST">
+
                @csrf
                <input type="submit" value="Votar" />
              </form>

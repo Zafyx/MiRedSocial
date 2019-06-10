@@ -16,7 +16,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/', 'InicioController@index'); //Login, registro..
 
-	Route::post('votar/{id}', 'TodoController@postVotar');
+	Route::post('votar/{id}/{conjuntos_id}', 'TodoController@postVotar');
 
     Route::group(['prefix' => 'inicio'], function(){
 

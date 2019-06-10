@@ -1,7 +1,7 @@
 <?php
 
 namespace WhatToWear\Http\Controllers;
-
+use DB;
 use WhatToWear\Conjunto;
 use WhatToWear\Imagen;
 use WhatToWear\Seguidor;
@@ -187,17 +187,16 @@ class TodoController extends Controller
     {
         return view('todo.edit');
     }
-    public function postVotar($imagenes_id)
+    public function postVotar($imagenes_id, $conjuntos_id)
     {
         //Antes de dar el voto compruebo que no haya sido votada alguna
         //de las otras fotos del mismo conjunto.
-        $id_conjunto_imagen = DB::table('imagenes')->select('conjuntos_id')->get();
-        $imagenes_del_conjunto = Imagen::all()->where('conjuntos_id', $id_conjunto_imagen);
+        $imagenes_del_conjunto = Imagen::all()->where('conjuntos_id', $conjuntos_id);
         foreach ($imagenes_del_conjunto as $imagen) {
-          $existe = DB::table('votos')->select('id')->where('imagenes_id', '=', $imagen->id)->get();
+          $existe = DB::table('votos')->where('imagenes_id', $imagen->id)->pluck('id');
           //Si existe una imagen de ese conjunto votada, borro el voto.
-          if ($existe > 0) {
-            DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
+          if ($existe) {
+            $estoquehace = DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
           }
         }
         //Ahora asigno el voto a la imagen en la que se ha clickado.
@@ -205,6 +204,8 @@ class TodoController extends Controller
         $voto->imagenes_id = $imagenes_id;
         $voto->users_id = auth()->user()->id;
         $voto->save();
+
+        return back();
     }
 
     public function putEdit($id)
