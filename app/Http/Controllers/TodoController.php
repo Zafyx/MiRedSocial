@@ -189,14 +189,15 @@ class TodoController extends Controller
     }
     public function postVotar($imagenes_id, $conjuntos_id)
     {
+        $userId = auth()->user()->id;
         //Antes de dar el voto compruebo que no haya sido votada alguna
         //de las otras fotos del mismo conjunto.
         $imagenes_del_conjunto = Imagen::all()->where('conjuntos_id', $conjuntos_id);
         foreach ($imagenes_del_conjunto as $imagen) {
-          $existe = DB::table('votos')->where('imagenes_id', $imagen->id)->pluck('id');
+          $existe = DB::table('votos')->where('imagenes_id', $imagen->id)->where('users_id', $userId)->pluck('id');
           //Si existe una imagen de ese conjunto votada, borro el voto.
           if ($existe) {
-            $estoquehace = DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
+              $estoquehace = DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
           }
         }
         //Ahora asigno el voto a la imagen en la que se ha clickado.
