@@ -9,7 +9,7 @@
                 <h1>Esto es el index!</h1>
             </div>
             <div class="row" style="text-align: center">
-              <div>
+              <div class="row">
 
             @foreach($conjuntos as $conjunto)
             <?php $nombreUsuario = ''; ?>
@@ -17,8 +17,9 @@
               <?php if ($conjunto->users_id == $user->id) { $nombreUsuario = $user->user_name; $fotoUsuario = $user->profile_photo; } ?>
               @endforeach
               <div class="col-sm-8">
-                  <h4>{{$conjunto->event}}</h4>
-                  <h6>{{$conjunto->description}}</h6>
+                <h4> Usuario: <?php echo $nombreUsuario ?> </h4>
+                  <h4> Evento: {{$conjunto->event}}</h4>
+                  <h6> Descripción del evento: {{$conjunto->description}}</h6>
               </div>
             <?php $nombreUsuario = ''; $fotoUsuario = ''; ?>
               @foreach($imagenes as $imagen)

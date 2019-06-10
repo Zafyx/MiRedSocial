@@ -6,11 +6,12 @@
     <div class="row" style="text-align: center">
       <div>
        @foreach( $conjuntos as $conjunto )
+       <div class="row">
        <div class="col-sm-8">
            <h4>{{$conjunto->event}}</h4>
            <h6>{{$conjunto->description}}</h6>
        </div>
-       <div class="row">
+
        @foreach( $imagenes as $imagen )
        <?php if($conjunto->id == $imagen->conjuntos_id){ ?>
          <div class="col-sm-4 mx-4">
