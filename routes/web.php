@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::put('edit/{id}', 'TodoController@putEdit'); // /inicio/editarUsuario
 
+				Route::get('/logout', function() {
+							return redirect('login')->with(Auth::logout());
+				});
+
         //Route::put('changeRented/{id}', 'InicioController@changeRented');
     });
 
@@ -39,10 +43,6 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Auth::routes();
-
-Route::get('/inicio/logout', function() {
-			return redirect('login')->with(Auth::logout());
-});
 
 Route::get('/inicio', 'InicioController@index')->name('inicio');
 

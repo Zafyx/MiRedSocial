@@ -67,7 +67,7 @@
         <a class="nav-link" href="/inicio/perfil/"> Mi Perfil </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="logout"> Cerrar Sesión </a>
+        <a class="nav-link" href="/inicio/logout"> Cerrar Sesión </a>
       </li>
     </ul>
   </div>
