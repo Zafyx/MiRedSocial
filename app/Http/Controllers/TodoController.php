@@ -15,7 +15,7 @@ class TodoController extends Controller
     public function getIndex()
     {
         $users = User::all();
-        dd($users);
+        
         $conjuntos = Conjunto::all();
         $imagenes = Imagen::all();
         return view('todo.index', compact('users','conjuntos','imagenes'));

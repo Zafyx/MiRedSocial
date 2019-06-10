@@ -64,7 +64,9 @@
         <a class="nav-link" href="/inicio/crearConjunto"> Añadir Conjunto </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/inicio/perfil/"> Mi Perfil </a>
+        <?php if (Auth::check()) { ?>
+        <a class="nav-link" href="{{url('inicio/perfil/' . auth()->user()->id)}}"> Mi Perfil </a>
+        <?php }?>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/inicio/logout"> Cerrar Sesión </a>

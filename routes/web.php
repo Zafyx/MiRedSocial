@@ -14,7 +14,7 @@
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/', 'InicioController@index'); //Login, registro..
+	Route::get('/', 'TodoController@getIndex'); //Login, registro..
 
 	Route::post('votar/{id}/{conjuntos_id}', 'TodoController@postVotar');
 
@@ -39,12 +39,12 @@ Route::group(['middleware' => 'auth'], function() {
         //Route::put('changeRented/{id}', 'InicioController@changeRented');
     });
 
-		Route::get('/perfil', 'InicioController@perfil');
+		//Route::get('/perfil', 'InicioController@perfil');
 });
 
 Auth::routes();
 
-Route::get('/inicio', 'InicioController@index')->name('inicio');
+//Route::get('/inicio', 'InicioController@index')->name('inicio');
 
 
 /* Route::group(['middleware' => 'auth'], function() {
