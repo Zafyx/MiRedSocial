@@ -15,7 +15,7 @@ class TodoController extends Controller
     public function getIndex()
     {
         $users = User::all();
-        
+
         $conjuntos = Conjunto::all();
         $imagenes = Imagen::all();
         return view('todo.index', compact('users','conjuntos','imagenes'));
@@ -26,28 +26,9 @@ class TodoController extends Controller
       //$arrayAtuendos[] = array();
       $conjuntos = Conjunto::all()->where('users_id', $id);
       $imagenes = Imagen::all()->where('users_id', $id);
-      // foreach ($conjuntos as $key => $conjunto) {
-      //   $conjunto_id = $conjunto->id;
-      //   $event = $conjunto->event;
-      //   $description = $conjunto->description;
-      //   $imagenes = Imagen::all()->where('conjuntos_id', $conjunto_id);
-      //   dd($imagenes);
-      //
-      //   $event = DB::select('SELECT event FROM conjuntos WHERE id = ?', [$conjunto_id]);
-      //   $description = DB::select('SELECT description FROM conjuntos WHERE id = ?', [$conjunto_id]);
-      //   $images = DB::select('SELECT image FROM imagenes WHERE conjuntos_id = ?', [$conjunto_id]);
-      //   $arrayAtuendos[] .= array(
-      //                     'conjuntos_id' => $conjunto_id,
-      //                     'event' => $event,
-      //                     'description' => $description,
-      //                     'images' => $images
-      //                   );
-      //         dd($event);
-      //         dd($description);
-      //         dd($images);
-      // }
+      $votos = Voto::all();
 
-      return view('todo.perfil', compact('conjuntos','imagenes'));
+      return view('todo.perfil', compact('conjuntos','imagenes','votos'));
     }
 
     public function getCreate()

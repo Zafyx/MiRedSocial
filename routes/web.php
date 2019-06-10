@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::post('votar/{id}/{conjuntos_id}', 'TodoController@postVotar');
 
-    Route::group(['prefix' => 'inicio'], function(){
+    Route::group(['prefix' => 'inicio'], function() {
 
         Route::get('/', 'TodoController@getIndex'); // inicio/principal se verán los atuendos de la gente.
 
