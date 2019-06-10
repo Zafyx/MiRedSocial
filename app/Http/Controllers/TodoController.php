@@ -15,10 +15,12 @@ class TodoController extends Controller
     public function getIndex()
     {
         $users = User::all();
-
-        $conjuntos = Conjunto::all();
+        $conjuntos = DB::table('conjuntos')
+                ->orderBy('created_at', 'desc')
+                ->get();
         $imagenes = Imagen::all();
-        return view('todo.index', compact('users','conjuntos','imagenes'));
+        $votos = Voto::all();
+        return view('todo.index', compact('users','conjuntos','imagenes','votos'));
     }
 
     public function getPerfilUsuario($id)
