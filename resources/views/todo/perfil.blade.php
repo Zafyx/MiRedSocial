@@ -15,17 +15,19 @@
        <?php if($conjunto->id == $imagen->conjuntos_id){ ?>
          <div class="col-sm-4 mx-4">
              <img src="/images/{{$imagen->image}}" alt="foto" style="height: 200px; width: 200px;">
+             <?php $votosImagen = 0; ?>
              @foreach( $votos as $voto )
-             <?php $votosImagen = 0; if($imagen->id == $voto->imagenes_id){ $votosImagen++; }?>
+             <?php if($imagen->id == $voto->imagenes_id){ $votosImagen++; }?>
               <!-- Aquí pongo los votos de la imagen -->
-             @endforeach
+              @endforeach
              <p> Votos: <?php echo $votosImagen ?> </p>
+             <?php $votosImagen = 0; ?>
              <form action="{{ url('votar/' . $imagen->id .'/' . $imagen->conjuntos_id) }}" method="POST">
                @csrf
                <input type="submit" value="Votar" />
              </form>
          </div>
-      <?php } ?>
+       <?php } ?>
       @endforeach
       </div>
       @endforeach
