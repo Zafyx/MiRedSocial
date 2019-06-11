@@ -6,6 +6,17 @@
     <div class="row" style="text-align: center">
       <div>
        @foreach( $conjuntos as $conjunto )
+       <?php if((auth()->user()->id) != $conjunto->users_id) { ?>
+         @foreach( $seguidores as $seguidor )
+         <?php if($seguidor->users_id_seguido == $conjunto->users_id) { ?>
+         <form action="{{ url('seguir/' . $conjunto->users_id ) }}" method="POST">
+           @csrf
+           <input type="submit" value="Seguir" />
+         </form>
+         <?php } ?>
+         @endforeach
+       <?php } ?>
+
        <div class="row">
        <div class="col-sm-8">
            <h4>{{$conjunto->event}}</h4>

@@ -20,7 +20,8 @@ class TodoController extends Controller
                 ->get();
         $imagenes = Imagen::all();
         $votos = Voto::all();
-        return view('todo.index', compact('users','conjuntos','imagenes','votos'));
+        $seguidores = Seguidor::all();
+        return view('todo.index', compact('users','conjuntos','imagenes','votos','seguidores'));
     }
 
     public function getPerfilUsuario($id)
@@ -29,8 +30,8 @@ class TodoController extends Controller
       $conjuntos = Conjunto::all()->where('users_id', $id);
       $imagenes = Imagen::all()->where('users_id', $id);
       $votos = Voto::all();
-
-      return view('todo.perfil', compact('conjuntos','imagenes','votos'));
+      $seguidores = Seguidor::all()->where('users_id_seguidor', $id);
+      return view('todo.perfil', compact('conjuntos','imagenes','votos','seguidores'));
     }
 
     public function getCreate()

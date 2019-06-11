@@ -69,7 +69,11 @@
         <?php }?>
       </li>
       <li class="nav-item">
+        <?php if (Auth::check()) { ?>
         <a class="nav-link" href="/inicio/logout"> Cerrar Sesión </a>
+      <?php } else {?>
+        <a class="nav-link" href="/login"> Iniciar Sesión </a>
+        <?php }?>
       </li>
     </ul>
   </div>

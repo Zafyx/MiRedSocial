@@ -13,11 +13,11 @@
 
             @foreach($conjuntos as $conjunto)
             <?php $nombreUsuario = ''; ?>
+            <div class="col-sm-8">
               @foreach($users as $user)
               <?php if ($conjunto->users_id == $user->id) { $nombreUsuario = $user->user_name; $fotoUsuario = $user->profile_photo; } ?>
-              @endforeach
-              <div class="col-sm-8">
-                <h4> Usuario: <?php echo $nombreUsuario ?> </h4>
+                <h4> Usuario: <a href="{{url('inicio/perfil/' . $user->id)}}"><?php echo $nombreUsuario ?> <a></h4>
+                  @endforeach
                   <h4> Evento: {{$conjunto->event}}</h4>
                   <h6> Descripción del evento: {{$conjunto->description}}</h6>
               </div>

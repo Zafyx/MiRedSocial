@@ -11,10 +11,9 @@
 |
 */
 
+Route::get('/', 'TodoController@getIndex'); //Login, registro..
 
 Route::group(['middleware' => 'auth'], function() {
-
-	Route::get('/', 'TodoController@getIndex'); //Login, registro..
 
 	Route::post('votar/{id}/{conjuntos_id}', 'TodoController@postVotar');
 
