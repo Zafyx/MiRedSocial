@@ -26,12 +26,13 @@ class TodoController extends Controller
 
     public function getPerfilUsuario($id)
     {
-      //$arrayAtuendos[] = array();
+      $userId = auth()->user()->id;
+      $usuario = User::all()->where('id', $id);
       $conjuntos = Conjunto::all()->where('users_id', $id);
       $imagenes = Imagen::all()->where('users_id', $id);
       $votos = Voto::all();
-      $seguidores = Seguidor::all()->where('users_id_seguidor', $id);
-      return view('todo.perfil', compact('conjuntos','imagenes','votos','seguidores'));
+      $seguidores = Seguidor::all()->where('users_id_seguidor', $userId);
+      return view('todo.perfil', compact('conjuntos','imagenes','votos','seguidores','id','usuario'));
     }
 
     public function getCreate()
@@ -181,7 +182,7 @@ class TodoController extends Controller
           $existe = DB::table('votos')->where('imagenes_id', $imagen->id)->where('users_id', $userId)->pluck('id');
           //Si existe una imagen de ese conjunto votada, borro el voto.
           if ($existe) {
-              $estoquehace = DB::table('votos')->where('imagenes_id', '=', $imagen->id)->delete();
+              $estoquehace = DB::table('votos')->where('imagenes_id', $imagen->id)->where('users_id', $userId)->delete();
           }
         }
         //Ahora asigno el voto a la imagen en la que se ha clickado.
@@ -211,9 +212,22 @@ class TodoController extends Controller
 
             $follow->save();
             return redirect()->back()->with('success', 'You now follow the user!');
-
     }
 
+    public function postSeguir($id)
+    {
+      $mi_usuario = auth()->user()->id;
+      $existe_relacion = DB::table('seguidores')->where('users_id_seguidor', $mi_usuario)->where('users_id_seguido', $id)->count();
+      if($existe_relacion > 0) {
+        DB::table('seguidores')->where('users_id_seguidor', $mi_usuario)->where('users_id_seguido', $id)->delete();
+      } else {
+        $seguidor = new Seguidor();
+        $seguidor->users_id_seguidor = $mi_usuario;
+        $seguidor->users_id_seguido = $id;
+        $seguidor->save();
+      }
+      return back();
+    }
 
     // public function changeRented($id)
     // {
