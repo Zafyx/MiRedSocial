@@ -13,6 +13,10 @@
 
 Route::get('/', 'TodoController@getIndex'); //Login, registro..
 
+Route::get('registrarse', 'TodoController@getRegistrarse');
+
+Route::post('registrarse', 'TodoController@postRegistrarse');
+
 Route::group(['middleware' => 'auth'], function() {
 
 	Route::post('seguir/{seguido_id}', 'TodoController@postSeguir');

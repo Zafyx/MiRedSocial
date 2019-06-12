@@ -69,13 +69,15 @@
         <a class="nav-link" href="{{url('inicio/perfil/' . auth()->user()->id)}}"> Mi Perfil </a>
         <?php }?>
       </li>
-      <li class="nav-item">
         <?php if (Auth::check()) { ?>
-        <a class="nav-link" href="/inicio/logout"> Cerrar Sesión </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/inicio/logout"> Cerrar Sesión </a>
+        </li>
       <?php } else {?>
-        <a class="nav-link" href="/login"> Iniciar Sesión </a>
+          <li><a class="nav-link" href="/login"> Iniciar Sesión </a></li>
+          <li><a class="nav-link" href="/registrarse"> Registrarse </a></li>
         <?php }?>
-      </li>
+
     </ul>
   </div>
 </nav>
