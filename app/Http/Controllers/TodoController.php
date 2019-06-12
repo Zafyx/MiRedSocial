@@ -96,7 +96,7 @@ class TodoController extends Controller
         return redirect()->action('TodoController@getPerfilUsuario', [$userId]);
         //return view('todo.perfil', compact('userId'));
         //return redirect('inicio/perfil/{id}')->with(compact('userId'));
-        //return redirect()->route('inicio.perfil.{id}')->with('id', $userdId);
+        //return redirect()->route('inicio.perfil.{id}')->with('id', $userId);
       }
 
       echo 'Se tienen que seleccionar 2 fotos como mínimo.';
@@ -167,7 +167,6 @@ class TodoController extends Controller
     // session_close();
 }
 
-
     public function getEdit($id)
     {
         return view('todo.edit');
@@ -190,28 +189,7 @@ class TodoController extends Controller
         $voto->imagenes_id = $imagenes_id;
         $voto->users_id = auth()->user()->id;
         $voto->save();
-
         return back();
-    }
-
-    public function putEdit($id)
-    {
-
-        return 'el put aún no va jaja';
-    }
-
-    public function followUser($id){
-        $user = User::find($id);
-        if(!$user){
-            return redirect()->back()->with('error', 'User does not exist.');
-            }
-
-            $follow = new Follower;
-            $follow->follower_id = Auth::user()->id;
-            $follow->leader_id = $user;
-
-            $follow->save();
-            return redirect()->back()->with('success', 'You now follow the user!');
     }
 
     public function postSeguir($id)
@@ -229,12 +207,15 @@ class TodoController extends Controller
       return back();
     }
 
-    // public function changeRented($id)
-    // {
-    //     $pelicula = Movie::findOrFail($id);
-    //     $pelicula->rented = !$pelicula->rented;
-    //     $pelicula->save();
-    //     return back();
-    // }
-
+    public function buscarUser(Request $request) {
+      $usuarioBuscado = $request->input('userBuscado');
+      $miUser = DB::table('users')->where('user_name',$usuarioBuscado)->pluck('id');
+      if (empty($miUser[0])) {
+        return back();
+      } else {
+        $id = explode("[", $miUser);
+        $id = explode("]", $id[1]);
+        return redirect()->action('TodoController@getPerfilUsuario', $id[0]);
+      }
+    }
 }

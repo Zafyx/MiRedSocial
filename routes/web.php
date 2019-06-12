@@ -17,6 +17,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::post('seguir/{seguido_id}', 'TodoController@postSeguir');
 
+	Route::post('buscarUser', 'TodoController@buscarUser');
+
 	Route::post('votar/{id}/{conjuntos_id}', 'TodoController@postVotar');
 
     Route::group(['prefix' => 'inicio'], function() {
