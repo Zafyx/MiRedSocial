@@ -7,7 +7,17 @@ body {
   font-family: Mifuentexd;
   color: rgb(48, 44, 50);
 }
-a {
+.aUsuario {
   text-decoration:none;
-  color:black;
+  color:#C1BDFA;
+}
+.aUsuario:hover {
+  color: black;
+  background-color: #F5FABC;
+}
+.nav-link {
+  font-size: 20px;
+}
+.navbar-brand {
+  font-size: 25px;
 }

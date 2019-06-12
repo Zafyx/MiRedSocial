@@ -51,7 +51,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <form class="form-inline justify-content-center" action="{{ url('/buscarUser') }}" method="POST">
           @csrf
