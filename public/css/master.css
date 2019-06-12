@@ -1,0 +1,13 @@
+@font-face {
+  font-family: Mifuentexd;
+  src: url('/fonts/Dosis/Dosis-Light.ttf');
+  font-weight: bold;
+}
+body {
+  font-family: Mifuentexd;
+  color: rgb(48, 44, 50);
+}
+a {
+  text-decoration:none;
+  color:black;
+}

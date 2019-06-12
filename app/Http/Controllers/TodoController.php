@@ -28,7 +28,8 @@ class TodoController extends Controller
     {
       $userId = auth()->user()->id;
       $usuario = User::all()->where('id', $id);
-      $conjuntos = Conjunto::all()->where('users_id', $id);
+      //$conjuntos = Conjunto::all()->where('users_id', $id);
+      $conjuntos = DB::table('conjuntos')->where('users_id', $id)->orderBy('created_at','DESC')->get();
       $imagenes = Imagen::all()->where('users_id', $id);
       $votos = Voto::all();
       $seguidores = Seguidor::all()->where('users_id_seguidor', $userId);
