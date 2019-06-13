@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-
     public function getIndex()
     {
         $users = User::all();
@@ -21,6 +20,7 @@ class TodoController extends Controller
         $imagenes = Imagen::all();
         $votos = Voto::all();
         $seguidores = Seguidor::all();
+        
         return view('todo.index', compact('users','conjuntos','imagenes','votos','seguidores'));
     }
 
@@ -28,11 +28,11 @@ class TodoController extends Controller
     {
       $userId = auth()->user()->id;
       $usuario = User::all()->where('id', $id);
-      //$conjuntos = Conjunto::all()->where('users_id', $id);
       $conjuntos = DB::table('conjuntos')->where('users_id', $id)->orderBy('created_at','DESC')->get();
       $imagenes = Imagen::all()->where('users_id', $id);
       $votos = Voto::all();
       $seguidores = Seguidor::all()->where('users_id_seguidor', $userId);
+
       return view('todo.perfil', compact('conjuntos','imagenes','votos','seguidores','id','usuario'));
     }
 
@@ -94,9 +94,9 @@ class TodoController extends Controller
           $imagen4->image = $name_image4;
           $imagen4->save();
         }
+
         return redirect()->action('TodoController@getPerfilUsuario', [$userId]);
       }
-
       echo 'Se tienen que seleccionar 2 fotos como mínimo.';
 }
 
@@ -122,6 +122,7 @@ class TodoController extends Controller
         $voto->imagenes_id = $imagenes_id;
         $voto->users_id = auth()->user()->id;
         $voto->save();
+
         return back();
     }
 
@@ -137,6 +138,7 @@ class TodoController extends Controller
         $seguidor->users_id_seguido = $id;
         $seguidor->save();
       }
+
       return back();
     }
 
@@ -148,6 +150,7 @@ class TodoController extends Controller
       } else {
         $id = explode("[", $miUser);
         $id = explode("]", $id[1]);
+
         return redirect()->action('TodoController@getPerfilUsuario', $id[0]);
       }
     }
@@ -161,7 +164,8 @@ class TodoController extends Controller
       $usuario->name = $request->input('name');
       $usuario->user_name = $request->input('user_name');
       $usuario->email = $request->input('email');
-      $usuario->password = $request->input('password');
+      $contrasena = bcrypt($request->input('password'));
+      $usuario->password = $contrasena;
       $usuario->profile_photo = 'foto_por_defecto.jpg';
       $usuario->save();
 

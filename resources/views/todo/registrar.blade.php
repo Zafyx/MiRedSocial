@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="title"> Contraseña: </label>
-                            <input type="text" name="password" id="password" class="form-control">
+                            <input type="password" name="password" id="password" class="form-control">
                         </div>
 
                         <div class="form-group text-center">

@@ -7,6 +7,9 @@ body {
   font-family: Mifuentexd;
   color: rgb(48, 44, 50);
 }
+.navbar {
+  background-color: #c1bdfa !important;
+}
 .aUsuario {
   text-decoration:none;
   color:#C1BDFA;
@@ -20,4 +23,9 @@ body {
 }
 .navbar-brand {
   font-size: 25px;
+}
+.imagenPerfil {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
 }
