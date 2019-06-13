@@ -2,13 +2,22 @@
 
 @section('content')
 
-    <div class="row" style="margin-top:40px">
+<div class="row mt-4 moda py-4" style="justify-content:center">
+      <h3 class="col-md-12 dentromoda"> <strong>¿Tienes dudas al elegir qué ponerte?</strong> </h3>
+      <h3 class="col-md-12 dentromoda"> ¡Nosotros podemos ayudarte a decidir! </h3>
+      <h3 class="col-md-12 dentromoda"> Además, también nos puedes ayudar con tus opiniones. </h3>
+      <h3 class="col-md-12 dentromoda"> ¡Únete y vota! </h3>
+</div>
+    <div class="row pt-4">
+
+
+
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
                     Registrarse
                 </div>
-                <div class="card-body" style="padding:30px">
+                <div class="card-body containerLogin" style="padding:30px">
 
                     <form class="form-group" action="{{ url('registrarse') }}" method="POST" enctype="multipart/form-data">
 
