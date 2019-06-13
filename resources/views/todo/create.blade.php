@@ -8,7 +8,7 @@
                 <div class="card-header text-center">
                     Añadir Atuendos
                 </div>
-                <div class="card-body" style="padding:30px">
+                <div class="card-body containerLogin" style="padding:30px">
 
                     <form class="form-group" action="{{ url('/inicio/create/') }}" method="POST" enctype="multipart/form-data">
 
